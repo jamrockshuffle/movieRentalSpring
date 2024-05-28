@@ -11,7 +11,8 @@ public class PriceCalculationService {
             return pricingPolicy.getStandardRate() * daysRented;
         } else {
             int daysWithPenalty = daysRented - pricingPolicy.getPenaltyThreshold();
-            return pricingPolicy.getStandardRate() * daysRented + (pricingPolicy.getPenaltyRate() * daysWithPenalty);
+            int daysWithoutPenalty = daysRented - daysWithPenalty;
+            return pricingPolicy.getStandardRate() * daysWithoutPenalty + (pricingPolicy.getPenaltyRate() * daysWithPenalty);
         }
     }
 }
