@@ -8,10 +8,10 @@ public class PriceCalculationService {
 
     public Double calculateTotalRentalPrice(Integer daysRented, RentalPricingPolicy pricingPolicy) {
         if (daysRented <= pricingPolicy.getPenaltyThreshold()) {
-            return pricingPolicy.getStandardRate();
+            return pricingPolicy.getStandardRate() * daysRented;
         } else {
             int daysWithPenalty = daysRented - pricingPolicy.getPenaltyThreshold();
-            return pricingPolicy.getStandardRate() + (pricingPolicy.getPenaltyRate() * daysWithPenalty);
+            return pricingPolicy.getStandardRate() * daysRented + (pricingPolicy.getPenaltyRate() * daysWithPenalty);
         }
     }
 }
