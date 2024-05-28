@@ -23,45 +23,31 @@ public class RentalController {
     @GetMapping("/calculateTotalPrice")
     public String calculateTotalPrice() {
 
-        Customer customer = new Customer();
-        customer.setId("1");
-        customer.setName("John Doe");
+        Customer customer = new Customer("1", "John Doe");
 
-        Movie regularMovie = new Movie();
-        regularMovie.setId("1");
-        regularMovie.setTitle("Rembo");
-        regularMovie.setGenre(Genre.REGULAR);
+        Movie regularMovie = new Movie("1", "Rembo", Genre.REGULAR);
 
-        Movie childrenMovie = new Movie();
-        childrenMovie.setId("1");
-        childrenMovie.setTitle("Harry Potter");
-        childrenMovie.setGenre(Genre.CHILDREN);
+        Movie childrenMovie = new Movie("1", "Harry Potter", Genre.CHILDREN);
 
-        Movie newReleaseMovie = new Movie();
-        newReleaseMovie.setId("1");
-        newReleaseMovie.setTitle("LOTR");
-        newReleaseMovie.setGenre(Genre.NEW_RELEASE);
+        Movie newReleaseMovie = new Movie("1", "LOTR", Genre.NEW_RELEASE);
 
-        Rental regularRental = new Rental();
-        regularRental.setId("1");
-        regularRental.setMovie(regularMovie);
-        regularRental.setCustomer(customer);
-        regularRental.setStart(LocalDateTime.now().minusDays(2));
-        regularRental.setFinish(LocalDateTime.now());
+        Rental regularRental = new Rental("1",
+                customer,
+                regularMovie,
+                LocalDateTime.now().minusDays(2),
+                LocalDateTime.now());
 
-        Rental childrenRental = new Rental();
-        childrenRental.setId("1");
-        childrenRental.setMovie(childrenMovie);
-        childrenRental.setCustomer(customer);
-        childrenRental.setStart(LocalDateTime.now().minusDays(4));
-        childrenRental.setFinish(LocalDateTime.now());
+        Rental childrenRental = new Rental("1",
+                customer,
+                childrenMovie,
+                LocalDateTime.now().minusDays(4),
+                LocalDateTime.now());
 
-        Rental newReleaseRental = new Rental();
-        newReleaseRental.setId("1");
-        newReleaseRental.setMovie(newReleaseMovie);
-        newReleaseRental.setCustomer(customer);
-        newReleaseRental.setStart(LocalDateTime.now().minusDays(7));
-        newReleaseRental.setFinish(LocalDateTime.now());
+        Rental newReleaseRental = new Rental("1",
+                customer,
+                newReleaseMovie,
+                LocalDateTime.now().minusDays(7),
+                LocalDateTime.now());
 
         List<Rental> rentals = Arrays.asList(childrenRental, regularRental, newReleaseRental);
 
