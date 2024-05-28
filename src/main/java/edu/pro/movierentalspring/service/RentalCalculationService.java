@@ -10,14 +10,11 @@ import java.util.List;
 @Service
 public class RentalCalculationService {
 
-    private final DefaultPricingStrategy defaultPricingStrategy;
-    private final PriceCalculationService priceCalculationService;
+    @Autowired
+    DefaultPricingStrategy defaultPricingStrategy;
 
     @Autowired
-    public RentalCalculationService(DefaultPricingStrategy defaultPricingStrategy, PriceCalculationService priceCalculationService) {
-        this.defaultPricingStrategy = defaultPricingStrategy;
-        this.priceCalculationService = priceCalculationService;
-    }
+    PriceCalculationService priceCalculationService;
 
     private Integer calculateRentalDays(LocalDateTime start, LocalDateTime finish) {
         return (int) ChronoUnit.DAYS.between(start, finish);

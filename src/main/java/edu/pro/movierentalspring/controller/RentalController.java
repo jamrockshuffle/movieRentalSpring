@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.http.ResponseEntity;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +21,7 @@ public class RentalController {
     RentalCalculationService rentalService;
 
     @GetMapping("/calculateTotalPrice")
-    public ResponseEntity<String> calculateTotalPrice() {
+    public String calculateTotalPrice() {
 
         Customer customer = new Customer();
         customer.setId("1");
@@ -67,8 +66,7 @@ public class RentalController {
         List<Rental> rentals = Arrays.asList(childrenRental, regularRental, newReleaseRental);
 
         double totalPrice = rentalService.calculateTotalPriceForRentals(rentals);
-        String response = String.format("Total price is: %.2f", totalPrice);
-        return ResponseEntity.ok(response);
+        return String.format("Total price is: %.2f", totalPrice);
     }
 }
 
